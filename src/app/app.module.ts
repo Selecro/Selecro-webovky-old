@@ -24,6 +24,8 @@ import { VerificationComponent } from './pages/verification/verification.compone
 import { FilterPipe } from './filter.pipe';
 import { PasswdchangeComponent } from './pages/passwdchange/passwdchange.component';
 import { LoadingComponent } from './pages/loading/loading.component';
+import { MorelessComponent } from './morelesstext/moreless.component';
+//import { MorelessComponent } from './moreless/moreless.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { LoadingComponent } from './pages/loading/loading.component';
     FilterPipe,
     PasswdchangeComponent,
     LoadingComponent,
+    MorelessComponent
   ],
   imports: [
     BrowserModule,

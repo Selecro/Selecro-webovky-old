@@ -1,0 +1,11 @@
+<span **ngIf="text.length <= wordLimit" [innerHTML]="text">{{text}}</span>
+
+<span **ngIf="text.length > wordLimit && showMore" [innerHTML]="text">
+    {{text.substring(0, wordLimit)}}... 
+    <span (click)="showMore == true">Více</span>
+</span>
+
+<span **ngIf="text.length > wordLimit && showMore" [innerHTML]="text">
+    {{text}}
+    <span (click)="showMore = false">Méně</span>
+</span>

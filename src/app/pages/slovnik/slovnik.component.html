@@ -27,7 +27,10 @@
                     {{ 'SLOVNIK.animace' | translate }}
                 </strong>
             </h5>
-            <div [innerHTML]="styl.popis"></div>
+            <app-moreless [text]="styl.popis" [wordLimit]="50"></app-moreless>
+           
+                <!--<div [innerHTML]="styl.popis"></div>-->
+            
         </div>
         <div id="second_column">
             <h2>
