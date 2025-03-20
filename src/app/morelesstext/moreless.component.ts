@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-moreless',
@@ -7,17 +7,29 @@ import { Component, Input } from '@angular/core';
   styleUrl: './moreless.component.css'
 })
 export class MorelessComponent {// tady nepatri OnInit
-  @Input() text: string = ''; // default je prazdny retezec
-  @Input() wordLimit: number = 100;
+  @Input() text: string = '';
+  @Input() maxLength: number = 100;
 
   isExpanded: boolean = false;
   truncatedText: string = '';
 
   ngOnInit() {
-    this.truncatedText = this.text.length > this.wordLimit ? this.text.substring(0, this.wordLimit) : this.text;
+    this.updateTruncatedText();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['text']) {
+      // If the text changes, reset everything
+      this.updateTruncatedText();
+      this.isExpanded = false; // Reset the expansion state
+    }
+  }
+
+  updateTruncatedText() {
+    this.truncatedText = this.text.length > this.maxLength ? this.text.substring(0, this.maxLength) : this.text;
   }
 
   toggleText() {
-    this.isExpanded = true;
+    this.isExpanded = !this.isExpanded;
   }
 }
