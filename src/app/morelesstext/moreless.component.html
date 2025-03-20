@@ -1,11 +1,4 @@
-<span **ngIf="text.length <= wordLimit" [innerHTML]="text">{{text}}</span>
-
-<span **ngIf="text.length > wordLimit && showMore" [innerHTML]="text">
-    {{text.substring(0, wordLimit)}}... 
-    <span (click)="showMore == true">Více</span>
-</span>
-
-<span **ngIf="text.length > wordLimit && showMore" [innerHTML]="text">
-    {{text}}
-    <span (click)="showMore = false">Méně</span>
-</span>
+<div class="text-container" [ngClass]="{ 'expanded': isExpanded }">
+    <span *ngIf="!isExpanded">{{ truncatedText }}<span class="ellipsis" (click)="toggleText()">...</span></span>
+    <span *ngIf="isExpanded">{{ text }}</span>
+</div>
