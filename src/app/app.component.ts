@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { Pomucka, Styl } from './types';
 import * as CryptoJS from 'crypto-js';
+import { AudioService } from './service/audio.service';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ export class AppComponent {
   darkmode: boolean = false;
   isFocused: boolean = false;
 
-  constructor(private vyukaService: VyukaService, private slovnikService: SlovnikService, private pomuckyService: PomuckyService, private instructionService: InstructionService, private router: Router, public translate: TranslateService) {
+  constructor(private vyukaService: VyukaService, private slovnikService: SlovnikService, private pomuckyService: PomuckyService, private instructionService: InstructionService, private router: Router, public translate: TranslateService, private audioService: AudioService) {
     this.loadResources();
     this.initializeLanguage();
     this.initializeDarkMode();
@@ -42,6 +43,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.loadResources();
+    this.audioService.playAudio();
   }
 
   ngDoCheck(): void {
