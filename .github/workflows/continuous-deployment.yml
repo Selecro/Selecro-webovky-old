@@ -1,4 +1,4 @@
-name: Angular Build and Deploy
+name: Deploy Angular to FTP server
 
 on:
   push:
@@ -36,25 +36,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Verify Node and NPM versions
-        run: |
-          node -v
-          npm -v
-
-      - name: Verify Angular CLI Version
-        run: ./node_modules/.bin/ng --version
-
-      - name: Debug node_modules/.bin
-        run: ls -al ./node_modules/.bin
-
       - name: Build Angular app (Development)
         if: github.ref != 'refs/heads/main'
+        id: build_app
         run: |
           ./node_modules/.bin/ng build --configuration=development
           echo "build_output_dir=./dist/webovky" >> $GITHUB_OUTPUT
 
       - name: Build Angular app (Production)
         if: github.ref == 'refs/heads/main'
+        id: build_app
         run: |
           ./node_modules/.bin/ng build --configuration=production
           echo "build_output_dir=./dist/webovky" >> $GITHUB_OUTPUT
